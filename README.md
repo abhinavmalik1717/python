@@ -25,7 +25,7 @@ def add_product():
                              columns=inventory.columns)
     
     inventory = pd.concat([inventory, new_entry], ignore_index=True)
-    print("✅ Product added successfully by Abhinav!")
+    print(" Product added successfully by Abhinav!")
 
 # Function to update stock
 def update_stock():
@@ -38,31 +38,31 @@ def update_stock():
         if action == "sale":
             if inventory.at[idx, "Quantity"] >= amount:
                 inventory.at[idx, "Quantity"] -= amount
-                print("📉 Sale recorded successfully.")
+                print(" Sale recorded successfully.")
             else:
                 print("⚠ Not enough stock available for sale.")
         elif action == "restock":
             inventory.at[idx, "Quantity"] += amount
-            print("📦 Product restocked successfully.")
+            print(" Product restocked successfully.")
         else:
-            print("❌ Invalid action entered.")
+            print(" Invalid action entered.")
         inventory.at[idx, "Last_Updated"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     else:
-        print("❌ Product not found in inventory.")
+        print(" Product not found in inventory.")
 
 # Function to display inventory
 def show_inventory():
-    print("\n📦 Current Inventory Status:")
+    print("\ Current Inventory Status:")
     print(inventory[['Product', 'Quantity']])
     low_stock = inventory[inventory['Quantity'] < 10]
     if not low_stock.empty:
-        print("\n🚨 Low Stock Alert (Below 10 units):")
+        print("\n Low Stock Alert (Below 10 units):")
         print(low_stock[['Product', 'Quantity']])
 
 # Function to save inventory
 def save_inventory():
     inventory.to_csv("inventory.csv", index=False)
-    print("💾 Inventory saved to inventory.csv successfully!")
+    print("Inventory saved to inventory.csv successfully!")
 
 # Main menu
 def main():
@@ -82,9 +82,9 @@ def main():
             show_inventory()
         elif choice == '4':
             save_inventory()
-            print("👋 Thank you for using the Inventory Manager. Goodbye!")
+            print(" Thank you for using the Inventory Manager. Goodbye!")
             break
         else:
-            print("❌ Invalid choice. Please try again.")
+            print(" Invalid choice. Please try again.")
 
 main()
